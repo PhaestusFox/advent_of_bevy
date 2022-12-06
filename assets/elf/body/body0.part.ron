@@ -1,0 +1,8 @@
+(
+    image: "elf/img/body0.png",
+    size: (72., 43.),
+    nodes: {
+        Head: (Auto, Auto, Auto, Px(43.)),
+        Legs: (Auto, Auto, Px(43.), Auto),
+    }
+)

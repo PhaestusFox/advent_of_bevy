@@ -1,0 +1,5 @@
+(
+            image: "elf/img/hat2_1_0.png",
+            margin: (Auto, Auto, Auto, Px(-30.)),
+            size: (100., 54.)
+        )

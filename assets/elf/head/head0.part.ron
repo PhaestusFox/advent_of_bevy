@@ -1,0 +1,7 @@
+(
+    image: "elf/img/head0.png",
+    size: (146.0, 81.0),
+    nodes: {
+        Hat: (Auto, Auto, Auto, Px(81.)),
+    }
+)
