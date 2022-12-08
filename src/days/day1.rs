@@ -5,9 +5,9 @@ use crate::{CalenderState, advent_calendar::AdventData, elf::{ElfParts, Elf, Elf
 
 use super::{DayItem, Day};
 
-pub struct Day1Plugin;
+pub struct DayPlugin;
 
-impl Plugin for Day1Plugin {
+impl Plugin for DayPlugin {
     fn build(&self, app: &mut App) {
         app.add_system_set(SystemSet::on_enter(CalenderState::Day1)
         .with_system(super::spawn_day::<1>)
@@ -138,7 +138,7 @@ fn read_data(
         children.push(child);
         }
     }
-    commands.spawn(NodeBundle {
+    commands.spawn((NodeBundle {
         style: Style {
             size: Size::new(Val::Percent(100.), Val::Percent(100.)),
             position_type: PositionType::Absolute,
@@ -147,7 +147,7 @@ fn read_data(
             ..Default::default()
         },
         ..Default::default()
-    }).push_children(&children);
+    }, DayItem)).push_children(&children);
     println!("Out of {} elfs\nThe top 3 are = {}:{}:{};\nFor A Total of: {}", elf_data.elfs.len(), most, most2, most3, most+most2+most3);
     commands.insert_resource(elf_data);
 }

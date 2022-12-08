@@ -1,10 +1,12 @@
 use bevy::{prelude::*, asset::{AssetLoader, LoadedAsset, LoadContext}, app::PluginGroupBuilder, reflect::TypeUuid};
 use serde::{Deserialize, Serialize};
 
-use crate::advent_calendar::{CalendarAssets};
+use crate::{advent_calendar::{CalendarAssets}, CalenderState};
 
 mod day1;
 mod day2;
+mod day3;
+mod day4;
 
 pub struct DaysPlugin;
 struct DayPlugin;
@@ -32,8 +34,10 @@ impl PluginGroup for DaysPlugin {
     fn build(self) -> PluginGroupBuilder {
         PluginGroupBuilder::start::<Self>()
         .add(DayPlugin)
-        .add(day1::Day1Plugin)
-        .add(day2::Day2Plugin)
+        .add(day1::DayPlugin)
+        .add(day2::DayPlugin)
+        .add(day3::DayPlugin)
+        .add(day4::DayPlugin)
     }
 }
 
@@ -69,6 +73,16 @@ fn spawn_day<const DAY: u8>(
         ..default()
     }, DayItem))
     .with_children(|p| {
+        p.spawn((ButtonBundle {
+            image: asset_server.load("home.png").into(),
+            style: Style {
+                size: Size::new(Val::Px(100.), Val::Px(100.)),
+                position: UiRect::new(Val::Px(0.), Val::Auto, Val::Px(0.), Val::Auto),
+                position_type: PositionType::Absolute,
+                ..Default::default()
+            },
+            ..Default::default()
+        }, CalenderState::CalenderMenu));
         p.spawn(TextBundle {
             text: Text { sections: vec![TextSection {
                 value: day.tital.clone(),

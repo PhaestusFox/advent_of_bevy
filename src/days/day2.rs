@@ -5,9 +5,9 @@ use crate::{CalenderState, advent_calendar::CalendarAssets};
 use super::{DayItem, Day};
 
 
-pub struct Day2Plugin;
+pub struct DayPlugin;
 
-impl Plugin for Day2Plugin {
+impl Plugin for DayPlugin {
     fn build(&self, app: &mut App) {
         app.add_system_set(SystemSet::on_enter(CalenderState::Day2)
         .with_system(super::spawn_day::<2>)
@@ -166,25 +166,25 @@ fn read_data(
         flex_wrap: FlexWrap::Wrap,
         ..Default::default()
     };
-    commands.spawn(NodeBundle {
+    commands.spawn((NodeBundle {
         style: style.clone(),
         ..Default::default()
-    }).push_children(&there_moves);
+    }, DayItem)).push_children(&there_moves);
     style.position.left = Val::Percent(25.);
-    commands.spawn(NodeBundle {
+    commands.spawn((NodeBundle {
         style: style.clone(),
         ..Default::default()
-    }).push_children(&children_g0);
+    }, DayItem)).push_children(&children_g0);
     style.position.left = Val::Percent(50.);
-    commands.spawn(NodeBundle {
+    commands.spawn((NodeBundle {
         style: style.clone(),
         ..Default::default()
-    }).push_children(&children_g1);
+    }, DayItem)).push_children(&children_g1);
     style.position.left = Val::Percent(75.);
-    commands.spawn(NodeBundle {
+    commands.spawn((NodeBundle {
         style,
         ..Default::default()
-    }).push_children(&children_pg);
+    }, DayItem)).push_children(&children_pg);
 }
 
 #[derive(Clone, Copy)]
