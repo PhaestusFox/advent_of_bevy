@@ -29,7 +29,6 @@ fn read_data(
     mut commands: Commands,
     days: Res<Assets<Day>>,
     assert_server: Res<AssetServer>,
-    calendar_assets: Res<CalendarAssets>,
 ) {
     let Some(day) = days.get(&assert_server.load("days/day6.day.ron")) else {error!("Day 6 in not loaded"); return;};
     let mut shutter = &day.data[..14];
@@ -37,7 +36,7 @@ fn read_data(
     let mut message = 0;
     for i in 14..day.data.len() {
         if !contains_dup(&shutter[..4]) && start == 0 {start = i - 10;}
-        if !contains_dup(shutter) {message = i; println!("{}", shutter); break;}
+        if !contains_dup(shutter) {message = i; break;}
         shutter = &day.data[i-13..i+1];
     }
     if start == 0 {error!("No start-of-packet"); return;}

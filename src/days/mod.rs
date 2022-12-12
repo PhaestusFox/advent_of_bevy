@@ -9,6 +9,8 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
+mod day8;
 
 pub struct DaysPlugin;
 struct DayPlugin;
@@ -42,6 +44,8 @@ impl PluginGroup for DaysPlugin {
         .add(day4::DayPlugin)
         .add(day5::DayPlugin)
         .add(day6::DayPlugin)
+        .add(day7::DayPlugin)
+        .add(day8::DayPlugin)
     }
 }
 

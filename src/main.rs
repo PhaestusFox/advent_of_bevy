@@ -10,7 +10,7 @@ fn main() {
     App::new()
         .add_plugins(DefaultPlugins.set(ImagePlugin {
             default_sampler: ImageSampler::nearest_descriptor(),
-        }))
+        }).set(AssetPlugin {watch_for_changes: true, ..Default::default()}))
         .add_plugin(bevy_editor_pls::EditorPlugin)
         .add_state(CalenderState::CalenderMenu)
         .add_startup_system(spawn_cam)
